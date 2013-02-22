@@ -10,6 +10,7 @@
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 #import "CardMatchingGame.h"
+#import "GameResult.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
@@ -18,12 +19,19 @@
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *playMode;
-@property (weak, nonatomic) IBOutlet UISlider *histSlider;
+//@property (weak, nonatomic) IBOutlet UISegmentedControl *playMode;
+//@property (weak, nonatomic) IBOutlet UISlider *histSlider;
 @property (strong, nonatomic) NSMutableArray *descHistory;
+@property (strong, nonatomic) GameResult *gameResult;
 @end
 
 @implementation CardGameViewController
+
+- (GameResult *)gameResult
+{
+    if (!_gameResult) _gameResult = [[GameResult alloc] init];
+    return _gameResult;
+}
 
 - (NSMutableArray *)descHistory
 {
@@ -34,10 +42,10 @@
 - (CardMatchingGame *)game
 {
     if (!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[PlayingCardDeck alloc] init] playingMode:self.playMode.selectedSegmentIndex];
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[PlayingCardDeck alloc] init] playingMode:0];
         self.flipCount = nil;
         self.descHistory = nil;
-        self.histSlider.maximumValue = 0;
+//        self.histSlider.maximumValue = 0;
     }
     return _game;
 }
@@ -84,14 +92,13 @@
     }
     self.descLabel.text = descText;
     
-    if (descText != NULL) {
-        [self.descHistory addObject:descText];
-        int n = [self.descHistory count] - 1;
-        self.histSlider.maximumValue = n;
-        self.histSlider.value = n;
-        self.descLabel.alpha = (self.histSlider.value < self.histSlider.maximumValue ? 0.3 : 1.0);
-    }
-
+//    if (descText != NULL) {
+//        [self.descHistory addObject:descText];
+//        int n = [self.descHistory count] - 1;
+//        self.histSlider.maximumValue = n;
+//        self.histSlider.value = n;
+//        self.descLabel.alpha = (self.histSlider.value < self.histSlider.maximumValue ? 0.3 : 1.0);
+//    }
 }
 
 - (void)setFlipCount:(int)flipCount
@@ -109,26 +116,28 @@
     
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
-    self.playMode.enabled = NO;
+//    self.playMode.enabled = NO;
     [self updateUI];
+    self.gameResult.score = self.game.score;
 }
 
 - (IBAction)deal:(id)sender {
     self.game = nil;
-    self.playMode.enabled = YES;
+    self.gameResult = nil;
+//    self.playMode.enabled = YES;
     [self updateUI];
 }
 
-- (IBAction)selectMode:(UISegmentedControl *)sender {
-    self.game = nil;
-    self.playMode.enabled = YES;
-    [self updateUI];
-}
-
-- (IBAction)slideHistory:(UISlider *)sender {
-    if ([self.descHistory count] != 0) {
-        self.descLabel.text = [NSString stringWithFormat:@"%@", self.descHistory[(int) sender.value]];
-        self.descLabel.alpha = (self.histSlider.value < self.histSlider.maximumValue ? 0.3 : 1.0);
-    }
-}
+//- (IBAction)selectMode:(UISegmentedControl *)sender {
+//    self.game = nil;
+//    self.playMode.enabled = YES;
+//    [self updateUI];
+//}
+//
+//- (IBAction)slideHistory:(UISlider *)sender {
+//    if ([self.descHistory count] != 0) {
+//        self.descLabel.text = [NSString stringWithFormat:@"%@", self.descHistory[(int) sender.value]];
+//        self.descLabel.alpha = (self.histSlider.value < self.histSlider.maximumValue ? 0.3 : 1.0);
+//    }
+//}
 @end

@@ -15,4 +15,6 @@
 
 - (Card *)drawRandomCard;
 
+- (Card *)cardAtIndex:(NSUInteger)index;
+
 @end

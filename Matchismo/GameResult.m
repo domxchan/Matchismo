@@ -20,6 +20,24 @@
 #define END_KEY @"EndDate"
 #define SCORE_KEY @"Score"
 
+//comparator by date
+- (NSComparisonResult)compareByDate:(GameResult *)result
+{
+    return [self.end compare:result.end];
+}
+
+//comparator by score
+- (NSComparisonResult)compareByScore:(GameResult *)result
+{
+    return [ @(self.score) compare:@(result.score)];
+}
+
+//comparator by duration
+- (NSComparisonResult)compareByDuration:(GameResult *)result
+{
+    return [@(self.duration) compare:@(result.duration)];
+}
+
 + (NSArray *)allGameResults
 {
     NSMutableArray *allGameResults = [[NSMutableArray alloc] init];
