@@ -9,5 +9,7 @@
 #import "CardGameViewController.h"
 
 @interface PlayingCardGameViewController : CardGameViewController
+@property (nonatomic) NSUInteger playingMode;
+@property (strong, nonatomic) NSString *gameName;
 
 @end

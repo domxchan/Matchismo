@@ -19,6 +19,7 @@
 #define START_KEY @"StartDate"
 #define END_KEY @"EndDate"
 #define SCORE_KEY @"Score"
+#define GAME_NAME @"GameName"
 
 //comparator by date
 - (NSComparisonResult)compareByDate:(GameResult *)result
@@ -58,6 +59,7 @@
             _start = resultDictionary[START_KEY];
             _end = resultDictionary[END_KEY];
             _score = [resultDictionary[SCORE_KEY] intValue];
+            _gameName = resultDictionary[GAME_NAME];
             if (!_start || !_end) self = nil;
         }
     }
@@ -75,7 +77,7 @@
 
 - (id)asPropertyList
 {
-    return @{ START_KEY: self.start, END_KEY: self.end, SCORE_KEY: @(self.score)};
+    return @{ START_KEY: self.start, END_KEY: self.end, SCORE_KEY: @(self.score), GAME_NAME: self.gameName};
 }
 
 // designated initialiser
@@ -85,6 +87,7 @@
     if (self) {
         _start = [NSDate date];
         _end = _start;
+        _gameName = [[NSString alloc] init];
     }
     return self;
 }

@@ -18,6 +18,7 @@
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="Ced-BS-HxA"/>
                         <segue destination="a7e-Fn-ihc" kind="relationship" relationship="viewControllers" id="yYV-J0-wwJ"/>
                         <segue destination="YxS-mm-V3C" kind="relationship" relationship="viewControllers" id="WWV-gd-MbE"/>
+                        <segue destination="lDm-Yk-d2g" kind="relationship" relationship="viewControllers" id="X1D-Lx-Pjm"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdS-g6-JrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -35,6 +36,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="N8p-gS-RAJ">
                                 <rect key="frame" x="20" y="20" width="57" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -46,6 +48,12 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <state key="selected">
+                                    <attributedString key="attributedTitle"/>
+                                </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="X1a-Rw-v2Y"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="wed-gP-AtF">
                                 <rect key="frame" x="92" y="20" width="57" height="34"/>
@@ -61,6 +69,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="mM0-lT-VLB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="CXe-4L-O0A">
                                 <rect key="frame" x="171" y="20" width="57" height="34"/>
@@ -76,6 +87,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="8oK-71-3Fz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="vEB-NM-rFQ">
                                 <rect key="frame" x="243" y="20" width="57" height="34"/>
@@ -91,6 +105,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="9G6-bf-Tm7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="PuW-r5-LYz">
                                 <rect key="frame" x="20" y="67" width="57" height="34"/>
@@ -106,6 +123,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="2n0-Gp-GTW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="iUP-CN-F8f">
                                 <rect key="frame" x="92" y="67" width="57" height="34"/>
@@ -121,6 +141,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="fXc-c1-Kul"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="lFS-kg-jsV">
                                 <rect key="frame" x="171" y="67" width="57" height="34"/>
@@ -136,6 +159,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="dSj-vn-TBj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="Vcg-E0-6KZ">
                                 <rect key="frame" x="243" y="67" width="57" height="34"/>
@@ -151,6 +177,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="cie-0v-u93"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="zOK-b7-pmr">
                                 <rect key="frame" x="20" y="114" width="57" height="34"/>
@@ -166,6 +195,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="0xO-j3-iyM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="0xl-ht-r0h">
                                 <rect key="frame" x="92" y="114" width="57" height="34"/>
@@ -181,6 +213,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="zmd-py-00M"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="pSd-qN-ddz">
                                 <rect key="frame" x="171" y="114" width="57" height="34"/>
@@ -196,6 +231,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="GSw-05-mbC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="yLD-vR-F8M">
                                 <rect key="frame" x="243" y="114" width="57" height="34"/>
@@ -211,6 +249,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="Itw-CX-CNk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="g5S-pi-QxA">
                                 <rect key="frame" x="20" y="161" width="57" height="34"/>
@@ -226,6 +267,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="33g-Fr-jYy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="K0c-48-NrT">
                                 <rect key="frame" x="92" y="161" width="57" height="34"/>
@@ -241,6 +285,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="Aw4-hC-gyF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="CJ2-S5-Kxd">
                                 <rect key="frame" x="171" y="161" width="57" height="34"/>
@@ -256,6 +303,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="9ef-Cn-sEB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="zlf-Yt-w0L">
                                 <rect key="frame" x="243" y="161" width="57" height="34"/>
@@ -271,6 +321,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="GUS-b6-bem"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="rQD-yJ-lej">
                                 <rect key="frame" x="20" y="208" width="57" height="34"/>
@@ -286,6 +339,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="Au7-qQ-wKC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="3WQ-b8-Afa">
                                 <rect key="frame" x="92" y="208" width="57" height="34"/>
@@ -301,6 +357,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="m7o-Dx-NI6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="Ly8-E4-Yly">
                                 <rect key="frame" x="171" y="208" width="57" height="34"/>
@@ -316,6 +375,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="F6J-wf-G3V"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="b56-Mb-ICl">
                                 <rect key="frame" x="243" y="208" width="57" height="34"/>
@@ -331,6 +393,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="Ifa-S1-psN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="wb3-Pe-RPI">
                                 <rect key="frame" x="20" y="255" width="57" height="34"/>
@@ -346,6 +411,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="6Pw-V7-bLr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="h0Z-UN-IxH">
                                 <rect key="frame" x="92" y="255" width="57" height="34"/>
@@ -361,6 +429,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="4TI-v2-Ngq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="tuL-Lo-w9H">
                                 <rect key="frame" x="171" y="255" width="57" height="34"/>
@@ -376,6 +447,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="4PR-bS-ZEB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="byx-Jy-rB9">
                                 <rect key="frame" x="243" y="255" width="57" height="34"/>
@@ -391,6 +465,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="flipCard:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="jxn-DQ-Oae"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Flips: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L3o-M9-YTP">
                                 <rect key="frame" x="23" y="385" width="92" height="21"/>
@@ -400,17 +477,24 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mSP-O4-8gy">
-                                <rect key="frame" x="108" y="385" width="82" height="21"/>
+                                <rect key="frame" x="108" y="385" width="98" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Action Description" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LIn-0S-lVP">
-                                <rect key="frame" x="23" y="326" width="188" height="41"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LIn-0S-lVP">
+                                <rect key="frame" x="23" y="322" width="269" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Action Description">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lfr-cp-xoc">
@@ -424,36 +508,42 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="deal:" destination="a7e-Fn-ihc" eventType="touchUpInside" id="8EB-IY-EiX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Set" id="gpp-QJ-lMp"/>
                     <connections>
-                        <outletCollection property="cardButtons" destination="N8p-gS-RAJ" id="i4v-BH-4ir"/>
-                        <outletCollection property="cardButtons" destination="wed-gP-AtF" id="EK1-om-3dJ"/>
-                        <outletCollection property="cardButtons" destination="CXe-4L-O0A" id="n5t-V0-kcv"/>
-                        <outletCollection property="cardButtons" destination="vEB-NM-rFQ" id="n0C-4U-r61"/>
-                        <outletCollection property="cardButtons" destination="PuW-r5-LYz" id="oIz-b7-lsC"/>
-                        <outletCollection property="cardButtons" destination="iUP-CN-F8f" id="d2m-kQ-sCR"/>
-                        <outletCollection property="cardButtons" destination="lFS-kg-jsV" id="cJE-we-PKQ"/>
-                        <outletCollection property="cardButtons" destination="Vcg-E0-6KZ" id="H6d-5F-IT3"/>
-                        <outletCollection property="cardButtons" destination="zOK-b7-pmr" id="kXU-nn-LzZ"/>
-                        <outletCollection property="cardButtons" destination="0xl-ht-r0h" id="9s4-5o-TNn"/>
-                        <outletCollection property="cardButtons" destination="pSd-qN-ddz" id="Xdb-pV-AwJ"/>
-                        <outletCollection property="cardButtons" destination="yLD-vR-F8M" id="ioB-Mc-Zq9"/>
-                        <outletCollection property="cardButtons" destination="g5S-pi-QxA" id="npU-45-Q6T"/>
-                        <outletCollection property="cardButtons" destination="K0c-48-NrT" id="NtH-NK-ZNZ"/>
-                        <outletCollection property="cardButtons" destination="CJ2-S5-Kxd" id="FBk-Ri-1Je"/>
-                        <outletCollection property="cardButtons" destination="zlf-Yt-w0L" id="wyA-wH-0lJ"/>
-                        <outletCollection property="cardButtons" destination="rQD-yJ-lej" id="Pue-uh-Lvl"/>
-                        <outletCollection property="cardButtons" destination="3WQ-b8-Afa" id="6FC-rt-icT"/>
-                        <outletCollection property="cardButtons" destination="Ly8-E4-Yly" id="T3E-9O-fuW"/>
-                        <outletCollection property="cardButtons" destination="b56-Mb-ICl" id="rJl-s7-AAy"/>
-                        <outletCollection property="cardButtons" destination="wb3-Pe-RPI" id="oY3-Mc-t2l"/>
-                        <outletCollection property="cardButtons" destination="h0Z-UN-IxH" id="4Cz-oH-V8A"/>
-                        <outletCollection property="cardButtons" destination="tuL-Lo-w9H" id="QCP-XN-zdf"/>
-                        <outletCollection property="cardButtons" destination="byx-Jy-rB9" id="qXZ-kB-mPO"/>
+                        <outlet property="descLabel" destination="LIn-0S-lVP" id="IqQ-4h-ijl"/>
+                        <outlet property="flipsLabel" destination="L3o-M9-YTP" id="oV7-IR-Le0"/>
+                        <outlet property="scoreLabel" destination="mSP-O4-8gy" id="oax-wQ-25F"/>
+                        <outletCollection property="cardButtons" destination="N8p-gS-RAJ" id="QjL-a6-i61"/>
+                        <outletCollection property="cardButtons" destination="wed-gP-AtF" id="2xF-2a-vgB"/>
+                        <outletCollection property="cardButtons" destination="CXe-4L-O0A" id="rPn-44-Eb2"/>
+                        <outletCollection property="cardButtons" destination="vEB-NM-rFQ" id="EyO-5x-dcW"/>
+                        <outletCollection property="cardButtons" destination="PuW-r5-LYz" id="Yj7-EQ-bZl"/>
+                        <outletCollection property="cardButtons" destination="iUP-CN-F8f" id="xg8-gm-9DF"/>
+                        <outletCollection property="cardButtons" destination="lFS-kg-jsV" id="chp-ey-X63"/>
+                        <outletCollection property="cardButtons" destination="Vcg-E0-6KZ" id="AjJ-8f-gCM"/>
+                        <outletCollection property="cardButtons" destination="zOK-b7-pmr" id="E2W-CO-VLa"/>
+                        <outletCollection property="cardButtons" destination="0xl-ht-r0h" id="8ru-fH-Ipn"/>
+                        <outletCollection property="cardButtons" destination="pSd-qN-ddz" id="zjw-8p-MAY"/>
+                        <outletCollection property="cardButtons" destination="yLD-vR-F8M" id="gHK-1y-74k"/>
+                        <outletCollection property="cardButtons" destination="g5S-pi-QxA" id="C74-rG-WZC"/>
+                        <outletCollection property="cardButtons" destination="K0c-48-NrT" id="FTg-Vh-3j5"/>
+                        <outletCollection property="cardButtons" destination="CJ2-S5-Kxd" id="hVu-SW-z8C"/>
+                        <outletCollection property="cardButtons" destination="zlf-Yt-w0L" id="0wu-hQ-hHk"/>
+                        <outletCollection property="cardButtons" destination="rQD-yJ-lej" id="VPe-NL-u2X"/>
+                        <outletCollection property="cardButtons" destination="3WQ-b8-Afa" id="AKY-IJ-hZK"/>
+                        <outletCollection property="cardButtons" destination="Ly8-E4-Yly" id="BJu-gi-gyM"/>
+                        <outletCollection property="cardButtons" destination="b56-Mb-ICl" id="09n-q2-NdH"/>
+                        <outletCollection property="cardButtons" destination="wb3-Pe-RPI" id="O6I-me-SmX"/>
+                        <outletCollection property="cardButtons" destination="h0Z-UN-IxH" id="dxI-gw-gBH"/>
+                        <outletCollection property="cardButtons" destination="tuL-Lo-w9H" id="cFE-mR-ziz"/>
+                        <outletCollection property="cardButtons" destination="byx-Jy-rB9" id="dX4-cd-BeJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4pa-Ah-hY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -532,7 +622,46 @@
             </objects>
             <point key="canvasLocation" x="-622" y="203"/>
         </scene>
-        <!--Playing Card Game View Controller - Card-->
+        <!--Settings View Controller - Settings-->
+        <scene sceneID="mK7-8k-i1y">
+            <objects>
+                <viewController id="lDm-Yk-d2g" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kSn-8g-h7r">
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ngv-xf-2i7">
+                                <rect key="frame" x="20" y="61" width="280" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reset scores">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetScores" destination="lDm-Yk-d2g" eventType="touchUpInside" id="EhJ-Ff-oET"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f9v-5F-My5">
+                                <rect key="frame" x="20" y="20" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="KZe-VD-yTy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cg0-nc-sWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-216" y="443"/>
+        </scene>
+        <!--Playing Card Game View Controller - Match-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
@@ -788,17 +917,24 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PeQ-Bf-6LV">
-                                <rect key="frame" x="108" y="385" width="82" height="21"/>
+                                <rect key="frame" x="108" y="385" width="98" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Action Description" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eyd-4l-hn4">
-                                <rect key="frame" x="23" y="326" width="188" height="41"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eyd-4l-hn4">
+                                <rect key="frame" x="23" y="322" width="269" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Action Description">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1fO-jD-MIS">
@@ -819,7 +955,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Card" id="yZt-E3-UW3"/>
+                    <tabBarItem key="tabBarItem" title="Match" id="yZt-E3-UW3"/>
                     <connections>
                         <outlet property="descLabel" destination="Eyd-4l-hn4" id="EAm-Qn-Cgl"/>
                         <outlet property="flipsLabel" destination="gBc-7q-oql" id="Joz-lN-qFH"/>
@@ -851,7 +987,7 @@
         <class className="CardGameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
             <relationships>
-                <relationship kind="action" name="deal:"/>
+                <relationship kind="action" name="deal:" candidateClass="UIButton"/>
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="descLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
@@ -868,11 +1004,11 @@
         <class className="PlayingCardGameViewController" superclassName="CardGameViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayingCardGameViewController.h"/>
         </class>
-        <class className="SetGameViewController" superclassName="UIViewController">
+        <class className="SetGameViewController" superclassName="CardGameViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SetGameViewController.h"/>
-            <relationships>
-                <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
-            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

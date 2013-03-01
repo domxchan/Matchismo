@@ -7,32 +7,43 @@
 //
 
 #import "PlayingCardGameViewController.h"
+#import "PlayingCardDeck.h"
+#import "CardMatchingGame.h"
 
 @interface PlayingCardGameViewController ()
-
+@property (strong, nonatomic) PlayingCardDeck *deck;
 @end
 
 @implementation PlayingCardGameViewController
+- (NSString *) gameName {
+    return @"Playing Card";
+}
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+- (NSUInteger) playingMode {
+    return 0;
+}
+
+- (PlayingCardDeck *) deck {
+    return _deck? _deck: [[PlayingCardDeck alloc] init];
+}
+
+- (void) updateUI {
+    UIImage *cardbackImage = [UIImage imageNamed:@"cardback2.png"];
+    
+    for (UIButton *cardButton in self.cardButtons) {
+        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        [cardButton setTitle:card.contents forState:UIControlStateSelected];
+        [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+        cardButton.selected = card.isFaceUp;
+        cardButton.enabled = !card.isUnplayable;
+        cardButton.alpha = (card.isUnplayable ? 0.3 : 1.0);
+        
+        UIImage *cardback = card.isFaceUp ? nil : cardbackImage;
+        cardButton.imageEdgeInsets = UIEdgeInsetsMake(-60,-55,-60,-55);
+        [cardButton setImage:cardback forState:UIControlStateNormal];
     }
-    return self;
-}
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super updateUI];
 }
 
 @end

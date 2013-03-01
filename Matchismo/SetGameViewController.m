@@ -8,52 +8,51 @@
 
 #import "SetGameViewController.h"
 #import "SetCardDeck.h"
-#import "SetCard.h"
+#import "CardMatchingGame.h"
 
 @interface SetGameViewController ()
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) SetCardDeck *deck;
 @end
 
 @implementation SetGameViewController
+- (NSString *) gameName {
+    return @"Set Card";
+}
 
-- (void) setCardButtons:(NSArray *)cardButtons {
-    _cardButtons = cardButtons;
-    [self updateUI];
+- (NSUInteger) playingMode {
+    return 1;
 }
 
 - (SetCardDeck *) deck {
-    if (!_deck) _deck = [[SetCardDeck alloc] init];
-    return _deck;
+    return _deck? _deck :[[SetCardDeck alloc] init];
 }
 
-- (void)addButtonAttributes: (NSDictionary *)attributes range:(NSRange) range cardButton:(UIButton*) cardButton state: (UIControlState) state
-{
-    if (range.location != NSNotFound) {
-        NSMutableAttributedString *mat = [[cardButton attributedTitleForState:UIControlStateNormal] mutableCopy];
-        [mat addAttributes:attributes range:range];
-        [cardButton setAttributedTitle: mat forState: state];
+- (NSAttributedString *)attrContents: (SetCard *) card {
+    NSString *text = [@"" stringByPaddingToLength:card.number withString:card.symbol startingAtIndex:0];
+    CGFloat alpha_val = 0.0;
+    if ([card.shading isEqualToString:@"solid"]) {
+        alpha_val = 1.0;
+    } else if ([card.shading isEqualToString:@"stripped"]) {
+        alpha_val = 0.15;
     }
-    
+    NSDictionary *attributes = @{NSForegroundColorAttributeName: [card.color colorWithAlphaComponent: alpha_val],
+                                 NSStrokeWidthAttributeName: @-5,
+                                 NSStrokeColorAttributeName: card.color};
+    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
+    return attrText;
 }
 
 - (void) updateUI {
     for (UIButton *cardButton in self.cardButtons) {
-//        Card *card = [self.cardButtons[[self.cardButtons indexOfObject:cardButton]]];
-        SetCard *card = (SetCard *)[self.deck drawRandomCard];
-        NSLog(@"card content: %@", card.contents);
-
-//        NSString *titletext = card.contents;
-//        NSDictionary *attributes = @{NSForegroundColorAttributeName: card.color,
-//                                     NSFontAttributeName: [[cardButton attributedTitleForState:0] attributesAtIndex:0 effectiveRange:NULL][NSFontAttributeName],
-//                                     NSStrokeWidthAttributeName: @-3,
-//                                     NSStrokeColorAttributeName: card.color};
-//        NSAttributedString *title = [[NSAttributedString alloc] initWithString:titletext attributes:attributes];
-        [cardButton setAttributedTitle:card.attrContents forState:UIControlStateNormal];
+        SetCard *card = (SetCard *)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        [cardButton setAttributedTitle:[self attrContents:card] forState:UIControlStateNormal];
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
+        cardButton.backgroundColor = cardButton.isSelected? [UIColor yellowColor] : [UIColor whiteColor];
         cardButton.alpha = (card.isUnplayable ? 0.3 : 1);
     }
+    
+    [super updateUI];
 }
 
 @end

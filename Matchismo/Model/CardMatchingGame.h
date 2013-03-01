@@ -26,5 +26,6 @@
 @property (readonly, nonatomic) NSArray *flippedCards; // working cards
 @property (readonly, nonatomic) int scoreChange;
 @property (nonatomic) int mode;  // 0: 2-card, 1: 3-card
+@property (strong, nonatomic) NSString *gameName;
 
 @end

@@ -16,6 +16,7 @@
 @property (readonly, nonatomic) NSDate *end;
 @property (readonly, nonatomic) NSTimeInterval duration;
 @property (nonatomic) int score;
+@property (strong, nonatomic) NSString *gameName;
 
 - (NSComparisonResult)compareByDate:(GameResult *)result;
 - (NSComparisonResult)compareByScore:(GameResult *)result;

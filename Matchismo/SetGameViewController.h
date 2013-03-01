@@ -6,8 +6,12 @@
 //  Copyright (c) 2013 Dominic Chan. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CardGameViewController.h"
+#import "SetCard.h"
 
-@interface SetGameViewController : UIViewController
+@interface SetGameViewController : CardGameViewController
+@property (nonatomic) NSUInteger playingMode;
+@property (strong, nonatomic) NSString *gameName;
+- (NSAttributedString *)attrContents: (SetCard *) card;
 
 @end

@@ -7,22 +7,22 @@
 //
 
 #import "CardGameViewController.h"
-#import "PlayingCardDeck.h"
-#import "PlayingCard.h"
 #import "CardMatchingGame.h"
 #import "GameResult.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 //@property (weak, nonatomic) IBOutlet UISegmentedControl *playMode;
 //@property (weak, nonatomic) IBOutlet UISlider *histSlider;
 @property (strong, nonatomic) NSMutableArray *descHistory;
 @property (strong, nonatomic) GameResult *gameResult;
+@property (strong, nonatomic) Deck *deck;
+@property (nonatomic) NSUInteger playingMode;
+@property (strong, nonatomic) NSString *gameName;
+
 @end
 
 @implementation CardGameViewController
@@ -39,11 +39,17 @@
     return _descHistory;
 }
 
+- (Deck *) deck {
+    return _deck? _deck: [[Deck alloc] init];
+}
+
 - (CardMatchingGame *)game
 {
     if (!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[PlayingCardDeck alloc] init] playingMode:0];
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:self.deck playingMode: self.playingMode];
+        _game.gameName = self.gameName;
         self.flipCount = nil;
+        self.gameResult = nil;
         self.descHistory = nil;
 //        self.histSlider.maximumValue = 0;
     }
@@ -56,41 +62,55 @@
     [self updateUI];
 }
 
+- (NSAttributedString *)attrContents: (Card *) card {
+    return [[NSAttributedString alloc] initWithString:[card description]];
+}
+
+- (NSMutableAttributedString *) attributedCardsDesc: (NSArray *) cards {
+    
+    NSMutableAttributedString *attrCardsDesc = [[NSMutableAttributedString alloc] init];
+    NSMutableArray *temp_cards = [cards mutableCopy];
+    
+    while ([temp_cards count] > 2) {
+        [attrCardsDesc appendAttributedString:[self attrContents:temp_cards[0]]];
+        [attrCardsDesc appendAttributedString:[[NSAttributedString alloc] initWithString:@", "]];
+        [temp_cards removeObjectAtIndex:0];
+    }
+    
+    if ([temp_cards count] == 2) {
+        [attrCardsDesc appendAttributedString:[self attrContents:temp_cards[0]]];
+        [attrCardsDesc appendAttributedString:[[NSAttributedString alloc] initWithString:@" and "]];
+        [temp_cards removeObjectAtIndex:0];
+    }
+    
+    if ([temp_cards count] == 1) {
+        [attrCardsDesc appendAttributedString:[self attrContents:temp_cards[0]]];
+    }
+    
+    return attrCardsDesc;
+}
+
 - (void)updateUI
 {
     
-    UIImage *cardbackImage = [UIImage imageNamed:@"cardback2.png"];
-    
-    for (UIButton *cardButton in self.cardButtons) {
-        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
-        cardButton.selected = card.isFaceUp;
-        cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = (card.isUnplayable ? 0.3 : 1.0);
-        
-        UIImage *cardback = card.isFaceUp ? nil : cardbackImage;
-        cardButton.imageEdgeInsets = UIEdgeInsetsMake(-60,-55,-60,-55);
-        [cardButton setImage:cardback forState:UIControlStateNormal];
-    }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
 
-    NSString *cardsDesc = [NSString stringWithFormat:@"%@", [self.game.flippedCards componentsJoinedByString:@", "]];
-    NSRange lastComma = [cardsDesc rangeOfString:@"," options:NSBackwardsSearch];
-    if(lastComma.location != NSNotFound) {
-        cardsDesc = [cardsDesc stringByReplacingCharactersInRange:lastComma withString: @" and"];
-    }
+    NSAttributedString *cardsDesc = [self attributedCardsDesc: self.game.flippedCards];
     
-    NSString *descText = nil;
+    NSMutableAttributedString *descText = nil;
     
     if (self.game.flipState == 2) {
-        descText = [NSString stringWithFormat:@"Flipped up %@", cardsDesc];
+        descText = [[NSMutableAttributedString alloc] initWithString:@"Flipped up "];
+        [descText appendAttributedString:cardsDesc];
     } else if (self.game.flipState == 1) {
-        descText = [NSString stringWithFormat:@"Matched %@ for %d points", cardsDesc, self.game.scoreChange];
+        descText = [[NSMutableAttributedString alloc] initWithString:@"Matched "];
+        [descText appendAttributedString:cardsDesc];
+        [descText appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @" for %d points", self.game.scoreChange]]];
     } else if (self.game.flipState == -1) {
-        descText = [NSString stringWithFormat:@"%@ don't match! %d points penalty!", cardsDesc, self.game.scoreChange];
+        descText = [cardsDesc mutableCopy];
+        [descText appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat: @" don't match! %d points penalty!", self.game.scoreChange]]];
     }
-    self.descLabel.text = descText;
+    self.descLabel.attributedText = descText;
     
 //    if (descText != NULL) {
 //        [self.descHistory addObject:descText];
@@ -115,15 +135,15 @@
     [UIView commitAnimations];
     
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.flipCount++;
+    if (!sender.selected) self.flipCount++;
 //    self.playMode.enabled = NO;
     [self updateUI];
     self.gameResult.score = self.game.score;
+    self.gameResult.gameName = self.gameName;
 }
 
-- (IBAction)deal:(id)sender {
+- (IBAction)deal:(UIButton *)sender {
     self.game = nil;
-    self.gameResult = nil;
 //    self.playMode.enabled = YES;
     [self updateUI];
 }

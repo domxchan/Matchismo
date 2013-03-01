@@ -41,10 +41,11 @@
     NSString *displayText = @"";
     NSArray* sortedArray = [[GameResult allGameResults] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateStyle = NSDateFormatterLongStyle;
+    formatter.dateStyle = NSDateFormatterMediumStyle;
+    formatter.timeStyle = NSDateFormatterShortStyle;
 
     for (GameResult *result in sortedArray){
-        displayText = [displayText stringByAppendingFormat:@"Score: %d (%@, %0gs)\n", result.score, [formatter stringFromDate:result.end], round(result.duration)];
+        displayText = [displayText stringByAppendingFormat:@"%@: %d (%@, %0gs)\n", result.gameName, result.score, [formatter stringFromDate:result.end], round(result.duration)];
     }
     self.display.text = displayText;
 }
@@ -53,6 +54,7 @@
 {
     [super viewWillAppear:animated];
     [self sortByDate];
+    self.dateAsc = !self.dateAsc;
 }
 
 - (void)setup

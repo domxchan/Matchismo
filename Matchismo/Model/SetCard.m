@@ -9,6 +9,66 @@
 #import "SetCard.h"
 
 @implementation SetCard
+- (int)match:(NSArray *)otherCards
+{
+    int score = 0;
+    
+    if ([otherCards count] == 2) {
+        BOOL cond1 = [self symbolsMatched: otherCards];
+        BOOL cond2 = [self shadingsMatched: otherCards];
+        BOOL cond3 = [self numbersMatched: otherCards];
+        BOOL cond4 = [self colorsMatched: otherCards];
+        if (cond1 && cond2 && cond3 && cond4) {
+            score = 30;
+        }
+    }
+    
+    return score;
+}
+
+- (BOOL) symbolsMatched: (NSArray *) cards {
+    BOOL matched = NO;
+    if ([cards count] == 2) {
+        NSString *string0 = self.symbol;
+        NSString *string1 = ((SetCard *)cards[0]).symbol;
+        NSString *string2 = ((SetCard *)cards[1]).symbol;
+        matched = ([string0 isEqualToString:string1] && [string1 isEqualToString:string2]) || (![string0 isEqualToString:string1] && ![string1 isEqualToString:string2] && ![string0 isEqualToString:string2]);
+    }
+    return matched;
+}
+
+- (BOOL) shadingsMatched: (NSArray *) cards  {
+    BOOL matched = NO;
+    if ([cards count] == 2) {
+        NSString *string0 = self.shading;
+        NSString *string1 = ((SetCard *)cards[0]).shading;
+        NSString *string2 = ((SetCard *)cards[1]).shading;
+        matched = ([string0 isEqualToString:string1] && [string1 isEqualToString:string2]) || (![string0 isEqualToString:string1] && ![string1 isEqualToString:string2] && ![string0 isEqualToString:string2]);
+    }
+    return matched;
+}
+
+- (BOOL) numbersMatched: (NSArray *) cards  {
+    BOOL matched = NO;
+    if ([cards count] == 2) {
+        NSUInteger num0 = self.number;
+        NSUInteger num1 = ((SetCard *)cards[0]).number;
+        NSUInteger num2 = ((SetCard *)cards[1]).number;
+        matched = (num0 == num1 && num1 == num2) || (num0 != num1 && num1 != num2 && num0 != num2);
+    }
+    return matched;
+}
+
+- (BOOL) colorsMatched: (NSArray *) cards  {
+    BOOL matched = NO;
+    if ([cards count] == 2) {
+        UIColor *col0 = self.color;
+        UIColor *col1 = ((SetCard *)cards[0]).color;
+        UIColor *col2 = ((SetCard *)cards[1]).color;
+        matched = ([col0 isEqual: col1] && [col1 isEqual: col2]) || (![col0 isEqual: col1] && ![col1 isEqual: col2] && ![col0 isEqual: col2]);
+    }
+    return matched;
+}
 
 + (NSUInteger) maxNumber {
     return 3;
@@ -19,9 +79,6 @@
         _number = number;
     }
 }
-//+ (NSArray *) validNumbers {
-//    return @[@"one", @"two", @"three"];
-//}
 
 + (NSArray *) validSymbols {
     return @[@"▲", @"●", @"■"];
@@ -35,25 +92,10 @@
     return @[[UIColor redColor], [UIColor greenColor], [UIColor purpleColor]];
 }
 
-- (NSAttributedString *)attrContents
-{
-
-    NSString *text = [@"" stringByPaddingToLength:self.number withString:self.symbol startingAtIndex:0];
-    CGFloat alpha_val = 0.0;
-    if ([self.shading isEqualToString:@"solid"]) {
-        alpha_val = 1.0;
-    } else if ([self.shading isEqualToString:@"stripped"]) {
-        alpha_val = 0.15;
-    }
-    NSDictionary *attributes = @{NSForegroundColorAttributeName: [self.color colorWithAlphaComponent: alpha_val],
-                                 NSStrokeWidthAttributeName: @-5,
-                                 NSStrokeColorAttributeName: self.color};
-    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:text attributes:attributes];
-    return attrText;
-}
 
 - (NSString *) contents {
-    NSString *text = [self.attrContents description];
+    NSString *text = [NSString stringWithFormat:@"%d%@/%@/%@", self.number, self.symbol,
+                      self.shading, [self.color description]];
     return text;
 }
 

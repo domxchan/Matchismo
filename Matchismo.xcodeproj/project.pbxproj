@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F147D2716D8B1E100DC3987 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F147D2616D8B1E100DC3987 /* SettingsViewController.m */; };
 		0F3927C916BE03CB000ABF14 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3927C816BE03CB000ABF14 /* CardMatchingGame.m */; };
 		0F50BD3216B9014600E5B142 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F50BD3116B9014600E5B142 /* UIKit.framework */; };
 		0F50BD3416B9014600E5B142 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F50BD3316B9014600E5B142 /* Foundation.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F147D2516D8B1E100DC3987 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		0F147D2616D8B1E100DC3987 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		0F3927C716BE03CB000ABF14 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		0F3927C816BE03CB000ABF14 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
 		0F50BD2D16B9014600E5B142 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +128,8 @@
 			children = (
 				0F50BD5A16B90B7700E5B142 /* Model */,
 				0F50BD4916B9014600E5B142 /* MainStoryboard.storyboard */,
+				0F147D2516D8B1E100DC3987 /* SettingsViewController.h */,
+				0F147D2616D8B1E100DC3987 /* SettingsViewController.m */,
 				0FDA214B16D779B40064BE3C /* PlayingCardGameViewController.h */,
 				0FDA214C16D779B40064BE3C /* PlayingCardGameViewController.m */,
 				0F6B9DEC16D3992E00728675 /* SetGameViewController.h */,
@@ -265,6 +270,7 @@
 				0F6B9DF716D4AA6100728675 /* SetCard.m in Sources */,
 				0FDA214A16D75D9A0064BE3C /* GameViewController.m in Sources */,
 				0FDA214D16D779B50064BE3C /* PlayingCardGameViewController.m in Sources */,
+				0F147D2716D8B1E100DC3987 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
