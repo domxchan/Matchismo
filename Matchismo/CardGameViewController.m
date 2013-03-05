@@ -10,7 +10,7 @@
 #import "CardMatchingGame.h"
 #import "GameResult.h"
 
-@interface CardGameViewController ()
+@interface CardGameViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -22,10 +22,40 @@
 @property (strong, nonatomic) Deck *deck;
 @property (nonatomic) NSUInteger playingMode;
 @property (strong, nonatomic) NSString *gameName;
+@property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end
 
 @implementation CardGameViewController
+- (IBAction)addCards {
+    [self.game addCards];
+    [self.cardCollectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.game.numCardsInPlay-1 inSection:0];
+    [self.cardCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+}
+
+- (NSUInteger)numberOfSectionsInCollections: (UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section
+{
+    return self.game.numCardsInPlay;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [[UICollectionViewCell alloc] init];// abstract
+}
+
+- (void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animated:(BOOL)animated
+{
+    // abstract
+}
 
 - (GameResult *)gameResult
 {
@@ -39,31 +69,35 @@
     return _descHistory;
 }
 
-- (Deck *) deck {
-    return _deck? _deck: [[Deck alloc] init];
-}
-
 - (CardMatchingGame *)game
 {
     if (!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:self.deck playingMode: self.playingMode];
+        _game = [[CardMatchingGame alloc] initWithCardCount:self.startingCardCount usingDeck:[self createDeck] playingMode: self.playingMode];
         _game.gameName = self.gameName;
         self.flipCount = nil;
         self.gameResult = nil;
         self.descHistory = nil;
-//        self.histSlider.maximumValue = 0;
     }
     return _game;
 }
 
-- (void)setCardButtons:(NSArray *)cardButtons
-{
-    _cardButtons = cardButtons;
-    [self updateUI];
-}
+- (Deck *) createDeck { return nil; } // abstract
 
 - (NSAttributedString *)attrContents: (Card *) card {
     return [[NSAttributedString alloc] initWithString:[card description]];
+}
+
+- (void)updateUI
+{
+    for (UICollectionViewCell *cell in [self.cardCollectionView visibleCells]) {
+        NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
+        Card *card = [self.game cardAtIndex:indexPath.item];
+        [self updateCell:cell usingCard:card animated:YES];
+    }
+    
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+
+    [self updateDesc];
 }
 
 - (NSMutableAttributedString *) attributedCardsDesc: (NSArray *) cards {
@@ -90,11 +124,8 @@
     return attrCardsDesc;
 }
 
-- (void)updateUI
+- (void) updateDesc
 {
-    
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-
     NSAttributedString *cardsDesc = [self attributedCardsDesc: self.game.flippedCards];
     
     NSMutableAttributedString *descText = nil;
@@ -112,13 +143,7 @@
     }
     self.descLabel.attributedText = descText;
     
-//    if (descText != NULL) {
-//        [self.descHistory addObject:descText];
-//        int n = [self.descHistory count] - 1;
-//        self.histSlider.maximumValue = n;
-//        self.histSlider.value = n;
-//        self.descLabel.alpha = (self.histSlider.value < self.histSlider.maximumValue ? 0.3 : 1.0);
-//    }
+
 }
 
 - (void)setFlipCount:(int)flipCount
@@ -127,37 +152,45 @@
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
 }
 
-- (IBAction)flipCard:(UIButton *)sender
+- (IBAction)flipCard:(UITapGestureRecognizer *)gesture
 {
-    [UIView beginAnimations:@"flipCard" context:nil];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:sender cache:YES];
-    [UIView setAnimationDuration:0.4];
-    [UIView commitAnimations];
-    
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    if (!sender.selected) self.flipCount++;
-//    self.playMode.enabled = NO;
-    [self updateUI];
-    self.gameResult.score = self.game.score;
-    self.gameResult.gameName = self.gameName;
+//    [UIView beginAnimations:@"flipCard" context:nil];
+//    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:sender cache:YES];
+//    [UIView setAnimationDuration:0.4];
+//    [UIView commitAnimations];
+
+    CGPoint tapLocation = [gesture locationInView:self.cardCollectionView];
+    NSIndexPath *indexPath = [self.cardCollectionView indexPathForItemAtPoint:tapLocation];
+    if (indexPath) {
+        [self.game flipCardAtIndex:indexPath.item];
+//        if (!sender.selected) self.flipCount++;
+        self.flipCount++;
+        self.gameResult.score = self.game.score;
+        self.gameResult.gameName = self.gameName;
+
+        if ([self.game.cardsIndexesToBeDeleted count] > 0 &&
+            self.gameWillRemoveMatchedCards) {
+            [self.game deleteCards];
+            [self removeCells];
+        }
+        [self updateUI];
+    }
+}
+
+- (void)removeCells
+{
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    [self.game.cardsIndexesToBeDeleted enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx
+                                                     inSection:0];
+        [indexPaths addObject:indexPath];
+    }];
+    [self.cardCollectionView deleteItemsAtIndexPaths:indexPaths];
+    [self.game cleanUpCardIndexesToBeDeleted];
 }
 
 - (IBAction)deal:(UIButton *)sender {
     self.game = nil;
-//    self.playMode.enabled = YES;
     [self updateUI];
 }
-
-//- (IBAction)selectMode:(UISegmentedControl *)sender {
-//    self.game = nil;
-//    self.playMode.enabled = YES;
-//    [self updateUI];
-//}
-//
-//- (IBAction)slideHistory:(UISlider *)sender {
-//    if ([self.descHistory count] != 0) {
-//        self.descLabel.text = [NSString stringWithFormat:@"%@", self.descHistory[(int) sender.value]];
-//        self.descLabel.alpha = (self.histSlider.value < self.histSlider.maximumValue ? 0.3 : 1.0);
-//    }
-//}
 @end

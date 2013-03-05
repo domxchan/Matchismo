@@ -17,14 +17,14 @@
     
     if (self) {
         for (NSUInteger i=1; i <= [SetCard maxNumber]; i++) {
-            for (NSString *symbol in [SetCard validSymbols]) {
-                for (NSString *shading in [SetCard validShadings]) {
-                    for (UIColor *color in [SetCard validColors]) {
+            for (NSUInteger j=0; j < [[SetCard validSymbols] count]; j++) {
+                for (NSUInteger k=0; k < [[SetCard validShadings] count]; k++) {
+                    for (NSUInteger l=0; l < [[SetCard validColors] count]; l++) {
                         SetCard *card = [[SetCard alloc] init];
-                        card.Number = i;
-                        card.Symbol = symbol;
-                        card.Shading = shading;
-                        card.Color = color;
+                        card.number = i;
+                        card.symbol = j;
+                        card.shading = k;
+                        card.color = l;
                         [self addCard:card atTop:YES];
                     }
                 }

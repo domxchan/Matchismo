@@ -23,9 +23,14 @@
 
 @property (readonly, nonatomic) int score;
 @property (readonly, nonatomic) int flipState; //1: matched,  -1: mismatch,  2: intermediate state
-@property (readonly, nonatomic) NSArray *flippedCards; // working cards
+@property (readonly, strong, nonatomic) NSArray *flippedCards; // working cards
 @property (readonly, nonatomic) int scoreChange;
 @property (nonatomic) int mode;  // 0: 2-card, 1: 3-card
 @property (strong, nonatomic) NSString *gameName;
+- (void) addCards;
+@property (nonatomic) NSUInteger numCardsInPlay;
 
+@property (readonly, strong, nonatomic) NSIndexSet *cardsIndexesToBeDeleted; // of card indexes
+- (void)deleteCards;
+- (void)cleanUpCardIndexesToBeDeleted;
 @end

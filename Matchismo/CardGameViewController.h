@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "CardMatchingGame.h"
+#import "Deck.h"
+//#import "PlayingCardView.h"
 
 @interface CardGameViewController : UIViewController
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+//@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
 - (void) updateUI;
+- (Deck *) createDeck;  // abstract.... must implement
+@property (nonatomic) NSUInteger startingCardCount; // abstract
+@property (nonatomic) BOOL gameWillRemoveMatchedCards;  //abstract
+- (void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animated:(BOOL)animated;  // abstract
+
 @end
