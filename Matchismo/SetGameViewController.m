@@ -119,10 +119,7 @@
         if ([subview isKindOfClass:[GameStatusView class]]) [subview removeFromSuperview];
     }
 
-    CGRect gameStatusRect;
-    gameStatusRect.origin = CGPointMake(23,322);
-    gameStatusRect.size = CGSizeMake(269, 45);;
-    GameStatusView *gameStatusView = [[GameStatusView alloc] initWithFrame:gameStatusRect];
+    GameStatusView *gameStatusView = [[GameStatusView alloc] initWithFrame:self.descLabel.frame];
     gameStatusView.opaque = NO;
     gameStatusView.backgroundColor = [UIColor clearColor];
     gameStatusView.cards = self.game.flippedCards;
@@ -136,8 +133,49 @@
         gameStatusView.postfix = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat: @"don't match! %d points penalty!", self.game.scoreChange] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17]}];
     }
 
-    [self.mainView addSubview:gameStatusView];
-
+    if ([self.game.flippedCards count] > 0) {
+        [gameStatusView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.mainView addSubview:gameStatusView];
+        NSLayoutConstraint *cn = [NSLayoutConstraint constraintWithItem:gameStatusView
+                                                              attribute:NSLayoutAttributeTop
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.descLabel
+                                                              attribute:NSLayoutAttributeTop
+                                                             multiplier:1
+                                                               constant:0];
+        [self.mainView addConstraint: cn];
+        cn = [NSLayoutConstraint constraintWithItem:gameStatusView
+                                          attribute:NSLayoutAttributeLeft
+                                          relatedBy:NSLayoutRelationEqual
+                                             toItem:self.descLabel
+                                          attribute:NSLayoutAttributeLeft
+                                         multiplier:1
+                                           constant:0];
+        [self.mainView addConstraint: cn];
+        cn = [NSLayoutConstraint constraintWithItem:gameStatusView
+                                          attribute:NSLayoutAttributeRight
+                                          relatedBy:NSLayoutRelationEqual
+                                             toItem:self.descLabel
+                                          attribute:NSLayoutAttributeRight
+                                         multiplier:1
+                                           constant:0];
+        [self.mainView addConstraint: cn];
+        cn = [NSLayoutConstraint constraintWithItem:gameStatusView
+                                          attribute:NSLayoutAttributeBottom
+                                          relatedBy:NSLayoutRelationEqual
+                                             toItem:self.descLabel
+                                          attribute:NSLayoutAttributeBottom
+                                         multiplier:1
+                                           constant:0];
+        [self.mainView addConstraint: cn];
+        [gameStatusView setNeedsDisplay];
+//        [self visualizeConstraints:[gameStatusView constraints]];
+    }
 }
+
+//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+//{
+//    [self updateDesc];
+//}
 
 @end

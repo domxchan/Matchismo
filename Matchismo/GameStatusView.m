@@ -16,10 +16,16 @@
     CGRect textBounds;
     textBounds.origin = CGPointMake(0, 0);
     textBounds.size = [self.prefix size];
+//    UILabel *prefixLabel = [[UILabel alloc] initWithFrame:textBounds];
+//    prefixLabel.attributedText = self.prefix;
+//    [prefixLabel drawTextInRect:textBounds];
     [self.prefix drawInRect:textBounds];
     [self drawMiniCards:CGPointMake(textBounds.origin.x+textBounds.size.width, textBounds.origin.y)];
     textBounds.origin = CGPointMake(0, self.postfix.size.height);
     textBounds.size = [self.postfix size];
+//    UILabel *postfixLabel = [[UILabel alloc] initWithFrame:textBounds];
+//    postfixLabel.attributedText = self.postfix;
+//    [postfixLabel drawTextInRect:textBounds];
     [self.postfix drawInRect:textBounds];
 }
 
@@ -64,6 +70,31 @@
 {
     _cards = cards;
     [self setNeedsDisplay];
+}
+
+
+#pragma mark - Initialization
+
+- (void) setup
+{
+    // do initialisation here
+}
+
+- (void) awakeFromNib
+{
+    [self setup];
+    
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+//        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        self.contentMode = UIViewContentModeRedraw;
+    }
+    return self;
 }
 
 @end
